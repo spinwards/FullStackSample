@@ -1,0 +1,15 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #drawer mode="side" [fixedInViewport]="true">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/']">Home</a>
+      <a mat-list-item [routerLink]="['/notes']">Notes</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <div class="main">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,37 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div *ngIf="!isLoading" class="notes-container">
+  <div *ngFor="let note of notes; index as ix" class="note-card">
+    <mat-card *ngIf="!note.edit" style="margin-bottom: 10px;">
+      <mat-card-header>{{ note.title }}</mat-card-header>
+      <mat-card-content>{{ note.body }}</mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="editNote(ix, note)">Edit</button>
+        <button mat-button (click)="deleteNote(ix, note)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="note.edit" style="margin-bottom: 10px;">
+      <mat-card-header>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput [(ngModel)]="note.title" />
+        </mat-form-field>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Note</mat-label>
+          <textarea matInput [(ngModel)]="note.body"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="saveNote(ix, note)">Save</button>
+        <button mat-button (click)="cancelEdit(ix, note)">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="fab-button-container">
+    <button mat-fab color="primary" (click)="newNote()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
